@@ -16,6 +16,11 @@ cc_defaults {
                 dir: "android/arm64",
             },
         },
+        android_rv64: {
+            dist: {
+                dir: "android/rv64",
+            },
+        },
         android_x86: {
             dist: {
                 dir: "android/x86",

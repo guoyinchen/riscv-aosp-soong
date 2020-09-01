@@ -1346,6 +1346,9 @@ type PrebuiltProperties struct {
 		Arm64 struct {
 			Src *string
 		}
+		Rv64 struct {
+			Src *string
+		}
 		X86 struct {
 			Src *string
 		}
@@ -1399,6 +1402,9 @@ func (p *Prebuilt) DepsMutator(ctx android.BottomUpMutatorContext) {
 		src = String(p.properties.Arch.Arm.Src)
 	case android.Arm64:
 		src = String(p.properties.Arch.Arm64.Src)
+	case android.Rv64:
+		src = String(p.properties.Arch.Rv64.Src)
+	case android.X86:
 	case android.X86:
 		src = String(p.properties.Arch.X86.Src)
 	case android.X86_64:

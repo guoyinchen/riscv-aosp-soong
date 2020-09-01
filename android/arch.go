@@ -30,6 +30,7 @@ var (
 
 	Arm    = newArch("arm", "lib32")
 	Arm64  = newArch("arm64", "lib64")
+	Rv64   = newArch("rv64", "lib64")
 	Mips   = newArch("mips", "lib32")
 	Mips64 = newArch("mips64", "lib64")
 	X86    = newArch("x86", "lib32")
@@ -43,6 +44,7 @@ var (
 var archTypeMap = map[string]ArchType{
 	"arm":    Arm,
 	"arm64":  Arm64,
+	"rv64":   Rv64,
 	"mips":   Mips,
 	"mips64": Mips64,
 	"x86":    X86,
@@ -141,6 +143,9 @@ var archVariants = map[ArchType][]string{
 		"kryo385",
 		"exynos-m1",
 		"exynos-m2",
+	},
+    Rv64: {
+		"rv64i",
 	},
 	Mips: {
 		"mips32_fp",
@@ -606,8 +611,8 @@ var (
 		LinuxBionic: []ArchType{X86_64},
 		Darwin:      []ArchType{X86_64},
 		Windows:     []ArchType{X86, X86_64},
-		Android:     []ArchType{Arm, Arm64, Mips, Mips64, X86, X86_64},
-		Fuchsia:     []ArchType{Arm64, X86_64},
+		Android:     []ArchType{Arm, Arm64, Rv64, Mips, Mips64, X86, X86_64},
+		Fuchsia:     []ArchType{Arm64, Rv64, X86_64},
 	}
 )
 
@@ -1530,6 +1535,7 @@ func getMegaDeviceConfig() []archConfig {
 		{"arm64", "armv8-2a", "cortex-a75", []string{"arm64-v8a"}},
 		{"arm64", "armv8-2a", "cortex-a76", []string{"arm64-v8a"}},
 		{"arm64", "armv8-2a", "kryo385", []string{"arm64-v8a"}},
+		{"rv64", "rv64i", "", []string{"lp64"}},
 		{"mips", "mips32-fp", "", []string{"mips"}},
 		{"mips", "mips32r2-fp", "", []string{"mips"}},
 		{"mips", "mips32r2-fp-xburst", "", []string{"mips"}},
@@ -1560,6 +1566,7 @@ func getNdkAbisConfig() []archConfig {
 	return []archConfig{
 		{"arm", "armv7-a", "", []string{"armeabi"}},
 		{"arm64", "armv8-a", "", []string{"arm64-v8a"}},
+		{"rv64", "rv64i", "", []string{"lp64"}},
 		{"x86", "", "", []string{"x86"}},
 		{"x86_64", "", "", []string{"x86_64"}},
 	}

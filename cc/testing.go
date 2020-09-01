@@ -49,6 +49,13 @@ func GatherRequiredDepsForTest(os android.OsType) string {
 		}
 
 		toolchain_library {
+			name: "libclang_rt.builtins-rv64-android",
+			vendor_available: true,
+			recovery_available: true,
+			src: "",
+		}
+
+		toolchain_library {
 			name: "libclang_rt.builtins-i686-android",
 			vendor_available: true,
 			recovery_available: true,

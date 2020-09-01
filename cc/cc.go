@@ -21,6 +21,7 @@ package cc
 import (
 	"strconv"
 	"strings"
+    "fmt"
 
 	"github.com/google/blueprint"
 	"github.com/google/blueprint/proptools"
@@ -1570,9 +1571,11 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 	directStaticDeps := []*Module{}
 	directSharedDeps := []*Module{}
 
+    fmt.Println("hahah***start****")
 	ctx.VisitDirectDeps(func(dep android.Module) {
 		depName := ctx.OtherModuleName(dep)
 		depTag := ctx.OtherModuleDependencyTag(dep)
+        fmt.Println("hahah*** start depName=" + depName)
 
 		ccDep, _ := dep.(*Module)
 		if ccDep == nil {
@@ -1726,6 +1729,7 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 		linkFile := ccDep.outputFile
 		depFile := android.OptionalPath{}
 
+        fmt.Println("hahah*** middle depName=" + depName)
 		switch depTag {
 		case ndkStubDepTag, sharedDepTag, sharedExportDepTag:
 			ptr = &depPaths.SharedLibs
@@ -1743,6 +1747,7 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 			depFile = ccDep.linker.(libraryInterface).toc()
 		case staticDepTag, staticExportDepTag:
 			ptr = nil
+            fmt.Println("hahah*** middle append staticdep depName=" + depName)
 			directStaticDeps = append(directStaticDeps, ccDep)
 		case lateStaticDepTag:
 			ptr = &depPaths.LateStaticLibs
@@ -1869,7 +1874,9 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 	})
 
 	// use the ordered dependencies as this module's dependencies
+    fmt.Println("hahah*** before orderStaticModuleDeps")
 	depPaths.StaticLibs = append(depPaths.StaticLibs, orderStaticModuleDeps(c, directStaticDeps, directSharedDeps)...)
+    fmt.Println("hahah*** end orderStaticModuleDeps")
 
 	// Dedup exported flags from dependencies
 	depPaths.Flags = android.FirstUniqueStrings(depPaths.Flags)
@@ -1881,6 +1888,7 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 		c.sabi.Properties.ReexportedIncludeFlags = android.FirstUniqueStrings(c.sabi.Properties.ReexportedIncludeFlags)
 	}
 
+    fmt.Println("hahah***end****")
 	return depPaths
 }
 

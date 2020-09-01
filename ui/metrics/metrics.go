@@ -118,6 +118,8 @@ func (m *Metrics) getArch(arch string) *metrics_proto.MetricsBase_ARCH {
 		return metrics_proto.MetricsBase_ARM.Enum()
 	case "arm64":
 		return metrics_proto.MetricsBase_ARM64.Enum()
+	case "rv64":
+		return metrics_proto.MetricsBase_RV64.Enum()
 	case "x86":
 		return metrics_proto.MetricsBase_X86.Enum()
 	case "x86_64":

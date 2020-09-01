@@ -128,6 +128,7 @@ func normalizeNdkApiLevel(ctx android.BaseContext, apiLevel string,
 	firstArchVersions := map[android.ArchType]int{
 		android.Arm:    minVersion,
 		android.Arm64:  21,
+		android.Rv64:   28,
 		android.Mips:   minVersion,
 		android.Mips64: 21,
 		android.X86:    minVersion,

@@ -65,6 +65,7 @@ const (
 	MetricsBase_ARM64   MetricsBase_ARCH = 2
 	MetricsBase_X86     MetricsBase_ARCH = 3
 	MetricsBase_X86_64  MetricsBase_ARCH = 4
+	MetricsBase_RV64    MetricsBase_ARCH = 5
 )
 
 var MetricsBase_ARCH_name = map[int32]string{
@@ -73,6 +74,7 @@ var MetricsBase_ARCH_name = map[int32]string{
 	2: "ARM64",
 	3: "X86",
 	4: "X86_64",
+	5: "RV64",
 }
 var MetricsBase_ARCH_value = map[string]int32{
 	"UNKNOWN": 0,
@@ -80,6 +82,7 @@ var MetricsBase_ARCH_value = map[string]int32{
 	"ARM64":   2,
 	"X86":     3,
 	"X86_64":  4,
+	"RV64":    5,
 }
 
 func (x MetricsBase_ARCH) Enum() *MetricsBase_ARCH {

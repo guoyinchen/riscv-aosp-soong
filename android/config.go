@@ -234,6 +234,7 @@ func TestArchConfigFuchsia(buildDir string, env map[string]string) Config {
 	config.Targets = map[OsType][]Target{
 		Fuchsia: []Target{
 			{Fuchsia, Arch{ArchType: Arm64, ArchVariant: "", Native: true}},
+			{Fuchsia, Arch{ArchType: Rv64,  ArchVariant: "", Native: true}},
 		},
 		BuildOs: []Target{
 			{BuildOs, Arch{ArchType: X86_64}},
@@ -252,6 +253,7 @@ func TestArchConfig(buildDir string, env map[string]string) Config {
 		Android: []Target{
 			{Android, Arch{ArchType: Arm64, ArchVariant: "armv8-a", Native: true, Abi: []string{"arm64-v8a"}}},
 			{Android, Arch{ArchType: Arm, ArchVariant: "armv7-a-neon", Native: true, Abi: []string{"armeabi-v7a"}}},
+			//{Android, Arch{ArchType: Rv64, ArchVariant: "rv64i", Native: true, Abi: []string{"lp64"}}},
 		},
 		BuildOs: []Target{
 			{BuildOs, Arch{ArchType: X86_64}},
